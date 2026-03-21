@@ -1,0 +1,13 @@
+.aboutfaq-section {
+  display: flex;
+  align-items: flex-start;
+  background-color: #F6F7F4;
+  padding: 4rem 10rem;
+  gap: 3rem;
+}
+
+.aboutfaq-divider {
+  width: 1px;
+  background-color: #ccc;
+  align-self: stretch;
+}

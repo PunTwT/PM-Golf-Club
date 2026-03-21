@@ -1,0 +1,41 @@
+.product-container {
+  padding: 2.5rem 2rem 3rem;
+  width: 100%;
+  background-color: #F6F7F4;
+}
+
+.product-heading {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.1em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+
+.product-heading::before,
+.product-heading::after {
+  content: "";
+  display: block;
+  width: 360px;
+  height: 1px;
+  background: #bbb;
+}
+
+.row {
+  --bs-gutter-x: 2rem;  
+  --bs-gutter-y: 1.8rem;  
+}
+
+.card {
+  border-radius: 16px !important;
+  overflow: hidden;
+  border: 1px solid #ddd !important;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
