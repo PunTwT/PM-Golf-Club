@@ -19,7 +19,7 @@ function Login() {
 
         <button className="login-close" onClick={() => navigate(-1)}>✕</button>
 
-        <div className="login-icon">🔒</div>
+        <div className="login-icon"><i class="fa-solid fa-lock"></i></div>
 
         <h2 className="login-brand">PM Golf Club</h2>
         <h4 className="login-title">Admin Login</h4>

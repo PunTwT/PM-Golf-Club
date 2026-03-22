@@ -17,24 +17,49 @@ function ProductDetail() {
 
   if (!product) return <p>Product not found.</p>;
 
-  const images = [product.image, product.image, product.image, product.image, product.image];
+  const images = [
+    product.image,
+    product.image,
+    product.image,
+    product.image,
+    product.image,
+  ];
 
   return (
     <>
       <main className="detail-container">
-
         <button className="detail-back" onClick={() => navigate(-1)}>
-          ← Back
+          <i class="fa-solid fa-arrow-left"></i> Back
         </button>
 
         <section className="detail-card">
-
           <section className="detail-left">
-
             <div className="detail-main-img-wrap">
-              <button className="detail-arrow" onClick={() => setSelectedImage((prev) => (prev === 0 ? images.length - 1 : prev - 1))}>‹</button>
-              <img src={images[selectedImage]} alt={product.title} className="detail-main-img" />
-              <button className="detail-arrow" onClick={() => setSelectedImage((prev) => (prev === images.length - 1 ? 0 : prev + 1))}>›</button>
+              <button
+                className="detail-arrow"
+                onClick={() =>
+                  setSelectedImage((prev) =>
+                    prev === 0 ? images.length - 1 : prev - 1,
+                  )
+                }
+              >
+                ‹
+              </button>
+              <img
+                src={images[selectedImage]}
+                alt={product.title}
+                className="detail-main-img"
+              />
+              <button
+                className="detail-arrow"
+                onClick={() =>
+                  setSelectedImage((prev) =>
+                    prev === images.length - 1 ? 0 : prev + 1,
+                  )
+                }
+              >
+                ›
+              </button>
             </div>
 
             <div className="thumbnails">
@@ -51,7 +76,6 @@ function ProductDetail() {
           </section>
 
           <section className="detail-right">
-
             <div className="detail-title-row">
               <h3 className="detail-title">{product.title}</h3>
               <span className="detail-reviews">2 reviews</span>
@@ -90,7 +114,9 @@ function ProductDetail() {
 
             <section className="detail-actions">
               <div className="detail-quantity">
-                <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>−</button>
+                <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
+                  −
+                </button>
                 <span>{quantity}</span>
                 <button onClick={() => setQuantity((q) => q + 1)}>+</button>
               </div>
@@ -120,7 +146,6 @@ function ProductDetail() {
                 </tbody>
               </table>
             </section>
-
           </section>
         </section>
       </main>

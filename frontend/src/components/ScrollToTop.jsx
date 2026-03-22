@@ -6,7 +6,7 @@ function ScrollToTop() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > 300); 
+      setVisible(window.scrollY > 300);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -19,7 +19,7 @@ function ScrollToTop() {
   return (
     visible && (
       <button className="scroll-to-top" onClick={scrollUp}>
-        ❮
+        <i class="fa-solid fa-angles-up"></i>
       </button>
     )
   );
