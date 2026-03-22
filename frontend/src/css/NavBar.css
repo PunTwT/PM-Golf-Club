@@ -1,7 +1,12 @@
+* {
+  font-size: 18px;
+}
+
 .navbar-brand {
-    color: #DABB6F;
+  color: #dabb6f;
+  font-size: 24px;
 }
 
 .custom-navbar {
-    background-color: #113E14;
+  background-color: #113e14;
 }

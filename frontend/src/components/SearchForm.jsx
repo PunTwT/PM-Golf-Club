@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 function SearchForm({ onSearch, onReset }) {
-  const [name,     setName]     = useState("");
-  const [brand,    setBrand]    = useState("All");
+  const [name, setName] = useState("");
+  const [brand, setBrand] = useState("All");
   const [category, setCategory] = useState("All");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
@@ -21,27 +21,39 @@ function SearchForm({ onSearch, onReset }) {
   };
 
   return (
-    <form className="search-box" onSubmit={(e) => { e.preventDefault(); handleSearch(); }}>
+    <form
+      className="search-box"
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSearch();
+      }}
+    >
       <fieldset className="search-fields">
         <legend className="visually-hidden">Filter Options</legend>
 
         <div className="search-field">
-            <label htmlFor="product-name">Product Name</label>
-            <div className="search-input-wrap">
-              <span className="search-icon">🔎</span>
-              <input
-                id="product-name"
-                type="text"
-                placeholder="Enter Product Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
+          <label htmlFor="product-name">Product Name</label>
+          <div className="search-input-wrap">
+            <span className="search-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+            <input
+              id="product-name"
+              type="text"
+              placeholder="Enter Product Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
+        </div>
 
         <div className="search-field">
           <label htmlFor="brand">Brand</label>
-          <select id="brand" value={brand} onChange={(e) => setBrand(e.target.value)}>
+          <select
+            id="brand"
+            value={brand}
+            onChange={(e) => setBrand(e.target.value)}
+          >
             <option value="All">All</option>
             <option value="Honma">Honma</option>
             <option value="Katana">Katana</option>
@@ -56,7 +68,11 @@ function SearchForm({ onSearch, onReset }) {
 
         <div className="search-field">
           <label htmlFor="category">Category</label>
-          <select id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+          <select
+            id="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
             <option value="All">All</option>
             <option value="Driver">Driver</option>
             <option value="Fairway Wood">Fairway Wood</option>
@@ -86,12 +102,15 @@ function SearchForm({ onSearch, onReset }) {
             />
           </div>
         </div>
-
       </fieldset>
 
       <div className="search-buttons">
-        <button type="submit" className="btn-search">🔎 Search</button>
-        <button type="button" className="btn-reset" onClick={handleReset}>↺ Reset</button>
+        <button type="submit" className="btn-search">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+        <button type="button" className="btn-reset" onClick={handleReset}>
+          <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+        </button>
       </div>
     </form>
   );

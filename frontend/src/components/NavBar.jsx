@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {HashLink} from "react-router-hash-link"
+import { HashLink } from "react-router-hash-link";
 import "../css/NavBar.css";
 
 function NavBar() {
@@ -38,22 +38,22 @@ function NavBar() {
               </HashLink>
             </li>
           </ul>
-          
+
           <div className="pe-5">
             <ul className="navbar-nav w-50 d-flex text-right">
               <li className="nav-item flex-fill">
                 <Link className="nav-link" to="/search">
-                  🔎
+                  <i class="fa-solid fa-magnifying-glass"></i>
                 </Link>
               </li>
               <li className="nav-item flex-fill">
                 <Link className="nav-link" to="/">
-                  🛒
+                  <i class="fa-solid fa-cart-shopping"></i>
                 </Link>
               </li>
               <li className="nav-item flex-fill">
                 <Link className="nav-link" to="/login">
-                  👤
+                  <i className="far fa-user-circle"></i>
                 </Link>
               </li>
             </ul>
