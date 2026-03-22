@@ -15,7 +15,7 @@ function Home() {
 
       <section id="shop">
         <CategorySlide />
-        <Products />
+        <Products limit={6}/>
       </section>
       <img src={footImage} alt="BG-Foot" className="w-100" style={{ height: "600px", objectFit: "cover", objectPosition: "center", }} />
       <section id="about"></section>
