@@ -33,7 +33,7 @@ function NavBar() {
               </HashLink>
             </li>
             <li className="nav-item flex-fill">
-              <HashLink className="nav-link" to="/#contact">
+              <HashLink className="nav-link" to="#contact">
                 Contact
               </HashLink>
             </li>
