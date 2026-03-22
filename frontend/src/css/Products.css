@@ -39,3 +39,21 @@
   background: #fff;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-title {
+  margin-bottom: 1rem;
+}
+
+.card-text {
+  font-weight: 700;
+  color: #113E14;
+  margin-top: auto;
+  text-align: right;  
+  font-size: 20px;
+}

@@ -42,7 +42,7 @@ function NavBar() {
           <div className="pe-5">
             <ul className="navbar-nav w-50 d-flex text-right">
               <li className="nav-item flex-fill">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/search">
                   🔎
                 </Link>
               </li>
@@ -52,7 +52,7 @@ function NavBar() {
                 </Link>
               </li>
               <li className="nav-item flex-fill">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/login">
                   👤
                 </Link>
               </li>
