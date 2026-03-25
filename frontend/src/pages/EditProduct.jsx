@@ -22,7 +22,7 @@ function EditProduct() {
         onSave={handleSave}
         onCancel={() => navigate(-1)}
       />
-      <footer>
+      <footer id="contact">
         <Footer />
       </footer>
     </>
