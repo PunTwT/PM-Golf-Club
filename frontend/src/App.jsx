@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Teams from "./pages/Teams";
 import Search from "./pages/Search";
 import ProductDetail from "./pages/ProductDetail";
+import EditProduct from "./pages/EditProduct";
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />}/>
-          <Route path="/teams" element={<Teams/>}/>
-          <Route path="/search" element={<Search />}/>
-          <Route path="/product/:id" element={<ProductDetail/>}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/teams" element={<Teams />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/product/:id/edit" element={<EditProduct />} />
         </Routes>
       </main>
     </>
