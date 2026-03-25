@@ -120,6 +120,10 @@
   background-color: #1a5c20;
 }
 
+.error-message {
+  color: red;
+}
+
 .fa-lock {
   font-size: 48px;
   color: #dabb6f;
