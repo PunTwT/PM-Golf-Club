@@ -1,8 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { useAuth } from "../context/AuthContext";
 import "../css/NavBar.css";
 
 function NavBar() {
+  const { isAdmin, logout } = useAuth();
+  const { navigate } = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand navbar-dark custom-navbar">
@@ -52,9 +61,18 @@ function NavBar() {
                 </Link>
               </li>
               <li className="nav-item flex-fill">
-                <Link className="nav-link" to="/login">
-                  <i className="far fa-user-circle"></i>
-                </Link>
+                {isAdmin ? (
+                  <button
+                    className="nav-link btn btn-link"
+                    onClick={handleLogout}
+                  >
+                    <i className="fa fa-sign-out"></i>
+                  </button>
+                ) : (
+                  <Link className="nav-link" to="/login">
+                    <i className="far fa-user-circle"></i>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
