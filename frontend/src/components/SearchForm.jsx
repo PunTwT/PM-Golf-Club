@@ -56,12 +56,13 @@ function SearchForm({ onSearch, onReset }) {
           >
             <option value="All">All</option>
             <option value="Honma">Honma</option>
-            <option value="Katana">Katana</option>
+            <option value="Callaway">Callaway</option>
             <option value="XXIO">XXIO</option>
-            <option value="PRGR">PRGR</option>
-            <option value="Odyssey">Odyssey</option>
-            <option value="Tourstage">Tourstage</option>
-            <option value="Yonex">Yonex</option>
+            <option value="Taylormade">Taylormade</option>
+            <option value="Yamaha">Yamaha</option>
+            <option value="PING">PING</option>
+            <option value="Ryoma">Ryoma</option>
+            <option value="Maruman">Maruman</option>
             <option value="Other">Other</option>
           </select>
         </div>
