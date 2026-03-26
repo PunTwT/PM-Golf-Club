@@ -42,6 +42,11 @@ function NavBar() {
               </HashLink>
             </li>
             <li className="nav-item flex-fill">
+              <Link className="nav-link" to="/teams">
+                Teams
+              </Link>
+            </li>
+            <li className="nav-item flex-fill">
               <HashLink className="nav-link" to="#contact">
                 Contact
               </HashLink>
