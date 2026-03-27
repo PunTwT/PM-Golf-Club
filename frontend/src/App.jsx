@@ -7,6 +7,7 @@ import Teams from "./pages/Teams";
 import Search from "./pages/Search";
 import ProductDetail from "./pages/ProductDetail";
 import EditProduct from "./pages/EditProduct";
+import AddProduct from "./pages/AddProduct";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/product/:id/edit" element={<EditProduct />} />
+          <Route path="/add-product" element={<AddProduct />} />
         </Routes>
       </main>
     </>

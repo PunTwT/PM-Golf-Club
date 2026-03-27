@@ -2,12 +2,34 @@ import { mockProducts } from "../data/mockProducts";
 import ProductCard from "./ProductCard";
 import "../css/Products.css";
 
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
 function Products({ limit }) {
   const displayProducts = limit ? mockProducts.slice(0, limit) : mockProducts;
 
+  const { isAdmin } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <main className="product-container">
+
+     <div className="d-flex justify-content-between align-items-center">
+
       <h3 className="product-heading">Products</h3>
+
+      {isAdmin && (
+          <button
+            className="btn me-3"
+            style={{ background: "#1a4d1a", color: "white", borderRadius: "10px" }}
+            onClick={() => navigate("/add-product")}
+          >
+            Add
+          </button>
+        )}
+      </div>
+
+
 
       <div className="container">
         <section className="row row-cols-3 g-4">
