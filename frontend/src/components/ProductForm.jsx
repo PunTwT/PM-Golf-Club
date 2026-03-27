@@ -6,8 +6,10 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
   const [description, setDescription] = useState(initialData.description || "");
   const [productId, setProductId] = useState(initialData.productId || "");
   const [brand, setBrand] = useState(initialData.brand || "");
-  const [category, setCategory] = useState(initialData.category || "All");
-  const [status, setStatus] = useState(initialData.status || "Out of Stock");
+  const [loft, setLoft] = useState(initialData.loft || "");
+ const [hand, setHand] = useState(initialData.hand || "");
+ const [category, setCategory] = useState(initialData.category || "");
+ const [status, setStatus] = useState(initialData.status || "");
   const [stock, setStock] = useState(initialData.stock || "");
   const [price, setPrice] = useState(initialData.price || "");
   const [image, setImage] = useState(initialData.image || null);
@@ -26,6 +28,8 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
       description,
       productId,
       brand,
+      loft,
+      hand,
       category,
       status,
       stock,
@@ -98,38 +102,68 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
           </div>
         </div>
 
+
+        <div className="row mb-3">
+  <div className="col">
+    <label htmlFor="pf-loft" className="form-label fw-semibold">
+      Loft
+    </label>
+    <input
+      id="pf-loft"
+      type="text"
+      className="form-control"
+      placeholder="e.g. 10.5"
+      value={loft}
+      onChange={(e) => setLoft(e.target.value)}
+    />
+  </div>
+  <div className="col">
+    <label htmlFor="pf-hand" className="form-label fw-semibold">
+      Hand
+    </label>
+    <select
+  id="pf-hand"
+  className="form-select"
+  value={hand}
+  onChange={(e) => setHand(e.target.value)}
+  style={{ color: hand === "" ? "#6c757d" : "#000" }}
+>
+  <option value="" disabled hidden>Select Hand</option>
+  <option value="Right">Right</option>
+  <option value="Left">Left</option>
+</select>
+  </div>
+</div>
+
+
         <div className="row mb-3">
           <div className="col">
             <label htmlFor="pf-category" className="form-label fw-semibold">
               Category
             </label>
-            <select
-              id="pf-category"
-              className="form-select"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="All">All</option>
-              <option value="Driver">Driver</option>
-              <option value="Fairway Wood">Fairway Wood</option>
-              <option value="Iron Set">Iron Set</option>
-              <option value="Wedge">Wedge</option>
-              <option value="Putter">Putter</option>
-            </select>
+           <select id="pf-category" className="form-select" value={category}
+  onChange={(e) => setCategory(e.target.value)}
+  style={{ color: category === "" ? "#6c757d" : "#000" }}>
+  <option value="" disabled hidden>Select Category</option>
+  <option value="All">All</option>
+  <option value="Driver">Driver</option>
+  <option value="Fairway Wood">Fairway Wood</option>
+  <option value="Iron Set">Iron Set</option>
+  <option value="Wedge">Wedge</option>
+  <option value="Putter">Putter</option>
+</select>
           </div>
           <div className="col">
             <label htmlFor="pf-status" className="form-label fw-semibold">
               Status
             </label>
-            <select
-              id="pf-status"
-              className="form-select"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-            >
-              <option value="Out of Stock">Out of Stock</option>
-              <option value="Ready to sale">Ready to sale</option>
-            </select>
+           <select id="pf-status" className="form-select" value={status}
+  onChange={(e) => setStatus(e.target.value)}
+  style={{ color: status === "" ? "#6c757d" : "#000" }}>
+  <option value="" disabled hidden>Select Status</option>
+  <option value="Out of Stock">Out of Stock</option>
+  <option value="Ready to sale">Ready to sale</option>
+</select>
           </div>
         </div>
 
@@ -205,6 +239,9 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
             Cancel
           </button>
         </div>
+
+
+
       </form>
     </section>
   );
