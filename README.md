@@ -30,6 +30,34 @@ DB_NAME=pm_golf_club
 
 ---
 
+## Database Setup
+
+The project includes SQL files to create and populate the database automatically.
+
+### 1. Open MySQL Workbench and connect to your local server
+
+### 2. Run the schema file first (creates tables)
+- Go to **File → Open SQL Script**
+- Select `db/schema.sql`
+- Click the **⚡ lightning bolt** button to run it
+
+### 3. Run the seed file second (adds sample data)
+- Go to **File → Open SQL Script**
+- Select `db/seed.sql`
+- Click the **⚡ lightning bolt** button to run it
+
+### 4. Verify it worked
+Run this in Workbench to confirm:
+```sql
+SHOW DATABASES;
+USE pm_golf_club;
+SHOW TABLES;
+```
+
+> Always run `schema.sql` before `seed.sql` — schema creates the tables, seed fills them with data
+
+---
+
 ## Project Structure Explained
 ```
 backend/
@@ -61,7 +89,7 @@ Request → Route → Middleware → Controller → Model → Database
 
 ### 1. Go to project root
 ```bash
-cd C:\Users\ppupunn\PM-Golf-Club
+cd path/to/PM-Golf-Club
 ```
 
 ### 2. Switch to dev and pull latest changes
