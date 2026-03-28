@@ -3,6 +3,7 @@ const {
   getProductByID: fetchProductByID,
   addProduct: insertProduct,
   deleteProduct,
+  editProduct,
 } = require("../models/product.model");
 
 const getProducts = async (req, res) => {
@@ -55,4 +56,24 @@ const removeProduct = async (req, res) => {
   }
 };
 
-module.exports = { getProducts, getProductByID, addProduct, removeProduct };
+const patchProduct = async (req, res) => {
+  try {
+    const fields = req.body;
+
+    if (Object.keys(fields).length === 0) {
+      return res.status(400).json({ error: "No fields provided" });
+    }
+
+    const result = await editProduct(req.params.id, fields);
+
+    if (!result) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    res.json({ message: "Product updated successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+module.exports = { getProducts, getProductByID, addProduct, removeProduct, patchProduct };

@@ -89,13 +89,22 @@ const addProduct = async (product) => {
 };
 
 const deleteProduct = async (id) => {
-  const [result] = await db.query(
-    `
-      delete from product where id = ?
-    `,
-    [id],
-  );
+  const [result] = await db.query(`delete from product where id = ?`, [id]);
   return result.affectedRows > 0;
 };
 
-module.exports = { getProducts, getProductByID, addProduct, deleteProduct };
+const editProduct = async (id, fields) => {
+  const keys = Object.keys(fields);
+  const values = Object.values(fields);
+
+  const setClause = keys.map((key) => ` ${key} = ?`).join(", ");
+
+  const [result] = await db.query(
+    `update product set ${setClause} where id = ?`,
+    [...values, id],
+  );
+
+  return result.affectedRows > 0;
+};
+
+module.exports = { getProducts, getProductByID, addProduct, deleteProduct, editProduct };
