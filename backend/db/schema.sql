@@ -31,7 +31,7 @@ CREATE TABLE product (
     price DECIMAL(7,2) NOT NULL,
     hand ENUM('RH', 'LH') NOT NULL,
     loft DECIMAL(3,1) NOT NULL, 
-    flex ENUM('R', 'S', 'SR', 'X') NOT NULL,
+    flex ENUM('R', 'S', 'SR', 'X'),
     quantity INT NOT NULL,
     category_id INT NOT NULL,
     FOREIGN KEY (category_id) REFERENCES category(id)
