@@ -2,6 +2,7 @@ const {
   getProducts: fetchProducts,
   getProductByID: fetchProductByID,
   addProduct: insertProduct,
+  deleteProduct,
 } = require("../models/product.model");
 
 const getProducts = async (req, res) => {
@@ -42,4 +43,16 @@ const addProduct = async (req, res) => {
   }
 };
 
-module.exports = { getProducts, getProductByID, addProduct };
+const removeProduct = async (req, res) => {
+  try {
+    const result = await deleteProduct(req.params.id);
+    if (!result) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+    res.json({ message: "Product deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+module.exports = { getProducts, getProductByID, addProduct, removeProduct };
