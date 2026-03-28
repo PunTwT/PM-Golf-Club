@@ -41,4 +41,51 @@ const getProducts = async ({
   return rows;
 };
 
-module.exports = { getProducts };
+const getProductByID = async (id) => {
+  const [rows] = await db.query(
+    `
+      select * from product
+      where id =?
+    `,
+    [id],
+  );
+  return rows[0];
+};
+
+const addProduct = async (product) => {
+  const {
+    name,
+    description,
+    code,
+    brand,
+    price,
+    hand,
+    loft,
+    flex,
+    quantity,
+    category_id,
+  } = product;
+
+  const [result] = await db.query(
+    `
+      insert into product (name, description, code, brand, price, hand, loft, flex, quantity, category_id) 
+      values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `,
+    [
+      name,
+      description,
+      code,
+      brand,
+      price,
+      hand,
+      loft,
+      flex,
+      quantity,
+      category_id,
+    ],
+  );
+
+  return result.insertId;
+};
+
+module.exports = { getProducts, getProductByID, addProduct };
