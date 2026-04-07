@@ -9,7 +9,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const productRoutes = require("./routes/product.routes");
+const authRoutes = require("./routes/auth.routes");
+
 app.use("/api/products", productRoutes);
+app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running");
