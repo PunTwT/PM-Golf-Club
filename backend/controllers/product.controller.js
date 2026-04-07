@@ -1,6 +1,7 @@
 const {
   getProducts: fetchProducts,
   getProductByID: fetchProductByID,
+  getProductImages: fetchProductImages,
   addProduct: insertProduct,
   deleteProduct,
   editProduct,
@@ -24,12 +25,16 @@ const getProducts = async (req, res) => {
 };
 
 const getProductByID = async (req, res) => {
+  const { id } = req.params;
   try {
     const product = await fetchProductByID(req.params.id);
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
     }
-    res.json(product);
+
+    const images = await fetchProductImages(id);
+
+    res.json({...product, images});
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -76,4 +81,10 @@ const patchProduct = async (req, res) => {
   }
 };
 
-module.exports = { getProducts, getProductByID, addProduct, removeProduct, patchProduct };
+module.exports = {
+  getProducts,
+  getProductByID,
+  addProduct,
+  removeProduct,
+  patchProduct,
+};
