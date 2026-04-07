@@ -52,6 +52,15 @@ const getProductByID = async (id) => {
   return rows[0];
 };
 
+const getProductImages = async (product_id) => {
+  const [rows] = await db.query(
+    `select id, url, name from product_image where product_id = ?`,
+    [product_id],
+  );
+
+  return rows;
+};
+
 const addProduct = async (product) => {
   const {
     name,
@@ -107,4 +116,11 @@ const editProduct = async (id, fields) => {
   return result.affectedRows > 0;
 };
 
-module.exports = { getProducts, getProductByID, addProduct, deleteProduct, editProduct };
+module.exports = {
+  getProducts,
+  getProductByID,
+  getProductImages,
+  addProduct,
+  deleteProduct,
+  editProduct,
+};

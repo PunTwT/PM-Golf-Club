@@ -24,7 +24,7 @@ CREATE TABLE category (
 
 CREATE TABLE product (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     description VARCHAR(255),
     code CHAR(5) NOT NULL UNIQUE,
     brand VARCHAR(20) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE product (
 CREATE TABLE product_image (
     id INT AUTO_INCREMENT PRIMARY KEY,
     url VARCHAR(255) NOT NULL,
-    name VARCHAR(50),
+    name VARCHAR(100),
     product_id INT NOT NULL,
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
