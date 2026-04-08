@@ -10,9 +10,9 @@ function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const success = login(username, password);
+    const success = await login(username, password);
     if (success) {
       navigate("/");
     } else {

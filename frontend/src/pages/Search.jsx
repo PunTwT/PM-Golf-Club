@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { mockProducts } from "../data/mockProducts";
+import { getProducts, deleteProduct } from "../services/productService";
 import ProductCard from "../components/ProductCard";
 import SearchForm from "../components/SearchForm";
 import ScrollToTop from "../components/ScrollToTop";
@@ -10,22 +10,40 @@ function Search() {
   const [results, setResults] = useState([]);
   const [searched, setSearched] = useState(false);
 
-  const handleSearch = ({ name, brand, category, minPrice, maxPrice }) => {
-    const filtered = mockProducts.filter((p) => {
-      const matchName = p.title.toLowerCase().includes(name.toLowerCase());
-      const matchBrand = brand === "All" || p.brand === brand;
-      const matchCategory = category === "All" || p.category === category;
-      const matchMin = minPrice === "" || p.price >= Number(minPrice);
-      const matchMax = maxPrice === "" || p.price <= Number(maxPrice);
-      return matchName && matchBrand && matchCategory && matchMin && matchMax;
-    });
-    setResults(filtered);
-    setSearched(true);
+  const handleSearch = async ({
+    name,
+    brand,
+    category,
+    minPrice,
+    maxPrice,
+  }) => {
+    try {
+      const data = await getProducts({
+        name,
+        brand,
+        category,
+        minPrice,
+        maxPrice,
+      });
+      setResults(data);
+      setSearched(true);
+    } catch (err) {
+      console.error("Search failed:", err);
+    }
   };
 
   const handleReset = () => {
     setResults([]);
     setSearched(false);
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteProduct(id);
+      setResults((prev) => prev.filter((p) => p.id !== id));
+    } catch (err) {
+      console.error("Failed to delete product:", err);
+    }
   };
 
   return (
@@ -46,8 +64,9 @@ function Search() {
                     key={p.id}
                     id={p.id}
                     image={p.image}
-                    title={p.title}
+                    title={p.name}
                     text={`฿ ${p.price.toLocaleString()}`}
+                    onDelete={handleDelete}
                   />
                 ))}
               </section>

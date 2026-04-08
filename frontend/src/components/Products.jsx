@@ -1,22 +1,37 @@
-import { mockProducts } from "../data/mockProducts";
 import ProductCard from "./ProductCard";
 import "../css/Products.css";
-
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getProducts, deleteProduct } from "../services/productService";
 
 function Products({ limit }) {
-  const displayProducts = limit ? mockProducts.slice(0, limit) : mockProducts;
-
   const { isAdmin } = useAuth();
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
 
-  const [products, setProducts] = useState(mockProducts);
-  const handleDelete = (id) => {
-    setProducts((prev) => prev.filter((p) => p.id !== id)); // ← delete handler
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProducts();
+        setProducts(data);
+      } catch (err) {
+        console.error("Failed to fetch products", err);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteProduct(id);
+      setProducts((prev) => prev.filter((p) => p.id !== id));
+    } catch (err) {
+      console.error("Failed to delete product:", err);
+    }
   };
+
+  const displayProducts = limit ? products.slice(0, limit) : products;
 
   return (
     <main className="product-container">
@@ -45,7 +60,7 @@ function Products({ limit }) {
               key={p.id}
               id={p.id}
               image={p.image}
-              title={p.title}
+              title={p.name}
               text={`฿ ${p.price.toLocaleString()}`}
               onDelete={handleDelete}
             />

@@ -2,23 +2,37 @@ import { useState } from "react";
 import "../css/ProductForm.css";
 
 function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
-  const [name, setName] = useState(initialData.title || "");
+  const [name, setName] = useState(initialData.name || "");
   const [description, setDescription] = useState(initialData.description || "");
-  const [productId, setProductId] = useState(initialData.productId || "");
+  const [productId, setProductId] = useState(initialData.code || "");
   const [brand, setBrand] = useState(initialData.brand || "");
   const [loft, setLoft] = useState(initialData.loft || "");
- const [hand, setHand] = useState(initialData.hand || "");
- const [category, setCategory] = useState(initialData.category || "");
- const [status, setStatus] = useState(initialData.status || "");
-  const [stock, setStock] = useState(initialData.stock || "");
+  const [hand, setHand] = useState(initialData.hand || "");
+  const [category, setCategory] = useState(initialData.category_name || "");
+  const [stock, setStock] = useState(initialData.quantity || "");
   const [price, setPrice] = useState(initialData.price || "");
-  const [image, setImage] = useState(initialData.image || null);
+  const [images, setImages] = useState(
+    initialData.images?.map((img) => img.url) || [],
+  );
+  const [newUrl, setNewUrl] = useState("");
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(URL.createObjectURL(file));
+  const handleAddUrl = () => {
+    if (newUrl.trim()) {
+      setImages((prev) => [...prev, newUrl.trim()]);
+      setNewUrl("");
     }
+  };
+
+  const handleRemoveImage = (index) => {
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const categoryMap = {
+    Driver: 1,
+    "Fairway Wood": 2,
+    "Iron Set": 3,
+    Wedge: 4,
+    Putter: 5,
   };
 
   const handleSave = (e) => {
@@ -26,15 +40,14 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
     onSave({
       name,
       description,
-      productId,
+      code: productId,
       brand,
-      loft,
+      loft: parseFloat(loft),
       hand,
-      category,
-      status,
-      stock,
-      price,
-      image,
+      category_id: categoryMap[category] || initialData.category_id,
+      quantity: parseInt(stock),
+      price: parseFloat(price),
+      images: images.map((url) => ({ url, name: name })),
     });
   };
 
@@ -102,68 +115,77 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
           </div>
         </div>
 
-
         <div className="row mb-3">
-  <div className="col">
-    <label htmlFor="pf-loft" className="form-label fw-semibold">
-      Loft
-    </label>
-    <input
-      id="pf-loft"
-      type="text"
-      className="form-control"
-      placeholder="e.g. 10.5"
-      value={loft}
-      onChange={(e) => setLoft(e.target.value)}
-    />
-  </div>
-  <div className="col">
-    <label htmlFor="pf-hand" className="form-label fw-semibold">
-      Hand
-    </label>
-    <select
-  id="pf-hand"
-  className="form-select"
-  value={hand}
-  onChange={(e) => setHand(e.target.value)}
-  style={{ color: hand === "" ? "#6c757d" : "#000" }}
->
-  <option value="" disabled hidden>Select Hand</option>
-  <option value="Right">Right</option>
-  <option value="Left">Left</option>
-</select>
-  </div>
-</div>
-
+          <div className="col">
+            <label htmlFor="pf-loft" className="form-label fw-semibold">
+              Loft
+            </label>
+            <input
+              id="pf-loft"
+              type="text"
+              className="form-control"
+              placeholder="e.g. 10.5"
+              value={loft}
+              onChange={(e) => setLoft(e.target.value)}
+            />
+          </div>
+          <div className="col">
+            <label htmlFor="pf-hand" className="form-label fw-semibold">
+              Hand
+            </label>
+            <select
+              id="pf-hand"
+              className="form-select"
+              value={hand}
+              onChange={(e) => setHand(e.target.value)}
+              style={{ color: hand === "" ? "#6c757d" : "#000" }}
+            >
+              <option value="" disabled hidden>
+                Select Hand
+              </option>
+              <option value="RH">Right</option>
+              <option value="LH">Left</option>
+            </select>
+          </div>
+        </div>
 
         <div className="row mb-3">
           <div className="col">
             <label htmlFor="pf-category" className="form-label fw-semibold">
               Category
             </label>
-           <select id="pf-category" className="form-select" value={category}
-  onChange={(e) => setCategory(e.target.value)}
-  style={{ color: category === "" ? "#6c757d" : "#000" }}>
-  <option value="" disabled hidden>Select Category</option>
-  <option value="All">All</option>
-  <option value="Driver">Driver</option>
-  <option value="Fairway Wood">Fairway Wood</option>
-  <option value="Iron Set">Iron Set</option>
-  <option value="Wedge">Wedge</option>
-  <option value="Putter">Putter</option>
-</select>
+            <select
+              id="pf-category"
+              className="form-select"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              style={{ color: category === "" ? "#6c757d" : "#000" }}
+            >
+              <option value="" disabled hidden>
+                Select Category
+              </option>
+              <option value="All">All</option>
+              <option value="Driver">Driver</option>
+              <option value="Fairway Wood">Fairway Wood</option>
+              <option value="Iron Set">Iron Set</option>
+              <option value="Wedge">Wedge</option>
+              <option value="Putter">Putter</option>
+            </select>
           </div>
+
           <div className="col">
-            <label htmlFor="pf-status" className="form-label fw-semibold">
-              Status
-            </label>
-           <select id="pf-status" className="form-select" value={status}
-  onChange={(e) => setStatus(e.target.value)}
-  style={{ color: status === "" ? "#6c757d" : "#000" }}>
-  <option value="" disabled hidden>Select Status</option>
-  <option value="Out of Stock">Out of Stock</option>
-  <option value="Ready to sale">Ready to sale</option>
-</select>
+            <label className="form-label fw-semibold">Status</label>
+            <div className="form-control" style={{ background: "#f8f9fa" }}>
+              {parseInt(stock) > 0 ? (
+                <span style={{ color: "#1a4d1a", fontWeight: 500 }}>
+                  ● Ready to sale
+                </span>
+              ) : (
+                <span style={{ color: "#dc3545", fontWeight: 500 }}>
+                  ● Out of Stock
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
@@ -175,6 +197,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
             <input
               id="pf-stock"
               type="number"
+              min="0"
               className="form-control"
               value={stock}
               onChange={(e) => setStock(e.target.value)}
@@ -199,32 +222,73 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
 
         <div className="mb-4">
           <label className="form-label fw-semibold">Add Images</label>
-          <label className="pf-img-box">
-            {image ? (
-              <img src={image} alt="preview" className="pf-img-preview" />
-            ) : (
-              <div className="pf-img-placeholder">
-                <svg
-                  width="48"
-                  height="48"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#ccc"
-                  strokeWidth="1.5"
+
+          <div className="d-flex gap-2 mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Paste image URL here"
+              value={newUrl}
+              onChange={(e) => setNewUrl(e.target.value)}
+            />
+            <button
+              type="button"
+              className="btn pf-save px-3"
+              onClick={handleAddUrl}
+            >
+              Add
+            </button>
+          </div>
+
+          <div className="d-flex flex-wrap gap-2">
+            {images.map((url, i) => (
+              <div key={i} className="position-relative">
+                <img
+                  src={url}
+                  alt={`preview ${i}`}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                    border: "1px solid #ddd",
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => handleRemoveImage(i)}
+                  className="position-absolute top-0 end-0 btn btn-danger btn-sm p-0"
+                  style={{
+                    width: "20px",
+                    height: "20px",
+                    fontSize: "10px",
+                    borderRadius: "50%",
+                  }}
                 >
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="8.5" cy="8.5" r="1.5" />
-                  <path d="M21 15l-5-5L5 21" />
-                </svg>
+                  ✕
+                </button>
+              </div>
+            ))}
+
+            {images.length === 0 && (
+              <div className="pf-img-box">
+                <div className="pf-img-placeholder">
+                  <svg
+                    width="48"
+                    height="48"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#ccc"
+                    strokeWidth="1.5"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <path d="M21 15l-5-5L5 21" />
+                  </svg>
+                </div>
               </div>
             )}
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              hidden
-            />
-          </label>
+          </div>
         </div>
 
         <div className="d-flex gap-3 align-items-center">
@@ -239,9 +303,6 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
             Cancel
           </button>
         </div>
-
-
-
       </form>
     </section>
   );
