@@ -1,18 +1,37 @@
-import { useParams } from "react-router-dom";
-import { mockProducts } from "../data/mockProducts";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getProductByID, editProduct } from "../services/productService";
 import ProductForm from "../components/ProductForm";
 import Footer from "../components/Footer";
 
 function EditProduct() {
   const { id } = useParams();
-  const product = mockProducts.find((p) => p.id == id);
   const navigate = useNavigate();
+  const [product, setProduct] = useState(null);
 
-  const handleSave = (data) => {
-    console.log("Edit: ", data);
-    navigate(-1);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const data = await getProductByID(id);
+        setProduct(data);
+      } catch (err) {
+        console.error("Failed to fetch product:", err);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  const handleSave = async (data) => {
+    try {
+      await editProduct(id, data);
+      navigate(-1);
+    }catch (err){
+      console.error("Failed to edit product:", err);
+    }
   };
+
+  if (!product) return <p>Product not found.</p>;
 
   return (
     <>

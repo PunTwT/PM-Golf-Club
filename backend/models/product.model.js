@@ -8,7 +8,9 @@ const getProducts = async ({
   maxPrice,
 } = {}) => {
   let query = `
-    select p.*, c.name as category_name from product p
+    select p.*, c.name as category_name,
+    (select url from product_image where product_id = p.id limit 1) as image
+    from product p
     join category c on p.category_id = c.id
     where 1=1
   `;
@@ -43,10 +45,9 @@ const getProducts = async ({
 
 const getProductByID = async (id) => {
   const [rows] = await db.query(
-    `
-      select * from product
-      where id =?
-    `,
+    `select p.*, c.name as category_name from product p
+      left join category c on p.category_id = c.id
+      where p.id =?`,
     [id],
   );
   return rows[0];
@@ -70,15 +71,17 @@ const addProduct = async (product) => {
     price,
     hand,
     loft,
-    flex,
+    flex = null,
     quantity,
     category_id,
   } = product;
 
+  const status = quantity > 0 ? "Ready to sale" : "Out of Stock";
+
   const [result] = await db.query(
     `
-      insert into product (name, description, code, brand, price, hand, loft, flex, quantity, category_id) 
-      values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      insert into product (name, description, code, brand, price, hand, loft, flex, quantity, category_id, status) 
+      values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `,
     [
       name,
@@ -91,6 +94,7 @@ const addProduct = async (product) => {
       flex,
       quantity,
       category_id,
+      status,
     ],
   );
 
@@ -98,6 +102,7 @@ const addProduct = async (product) => {
 };
 
 const deleteProduct = async (id) => {
+  await db.query(`DELETE FROM product_image WHERE product_id = ?`, [id]);
   const [result] = await db.query(`delete from product where id = ?`, [id]);
   return result.affectedRows > 0;
 };
@@ -116,11 +121,37 @@ const editProduct = async (id, fields) => {
   return result.affectedRows > 0;
 };
 
+const addProductImages = async (product_id, images) => {
+  if (!images || images.length === 0) return;
+
+  const values = images.map((img) => [img.url, img.name || null, product_id]);
+
+  await db.query(`insert into product_image (url, name, product_id) values ?`, [
+    values,
+  ]);
+};
+
+const updateImages = async (product_id, images) => {
+  await db.query(`delete from product_image where product_id = ?`, [
+    product_id,
+  ]);
+
+  if (images && images.length > 0) {
+    const values = images.map((img) => [img.url, img.name || null, product_id]);
+    await db.query(
+      `insert into product_image (url, name, product_id) values ?`,
+      [values],
+    );
+  }
+};
+
 module.exports = {
   getProducts,
   getProductByID,
   getProductImages,
   addProduct,
+  addProductImages,
+  updateImages,
   deleteProduct,
   editProduct,
 };

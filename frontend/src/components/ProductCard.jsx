@@ -46,16 +46,16 @@ function ProductCard({ image, title, text, id, onDelete }) {
         <div
           className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
           style={{ background: "rgba(0,0,0,0.5)", zIndex: 1050 }}
-          onClick={() => setShowModal(false)} // click outside = cancel
+          onClick={() => setShowModal(false)} 
         >
           <div
             className="bg-white rounded-3 p-4"
             style={{ width: "320px" }}
-            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+            onClick={(e) => e.stopPropagation()} 
           >
             <h5 className="mb-2">Delete Product?</h5>
-            <p className="text-muted mb-4" style={{ fontSize: "14px" }}>
-              Are you sure you want to delete <strong>{title}</strong>? This
+            <p className="text-muted mb-4" style={{ fontSize: "18px" }}>
+              Are you sure you want to delete <strong>{title}</strong>? <br/>This
               cannot be undone.
             </p>
             <div className="d-flex gap-2 justify-content-end">

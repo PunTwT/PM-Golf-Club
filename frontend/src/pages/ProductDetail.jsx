@@ -1,29 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { mockProducts } from "../data/mockProducts";
+import { getProductByID } from "../services/productService";
 import Footer from "../components/Footer";
 import "../css/ProductDetail.css";
 
 function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = mockProducts.find((p) => p.id === Number(id));
 
+  const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [hand, setHand] = useState("RH");
   const [loft, setLoft] = useState("10");
   const [flex, setFlex] = useState("R");
 
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const data = await getProductByID(id);
+        setProduct(data);
+        if (data.hand) setHand(data.hand);
+        if (data.loft) setLoft(String(data.loft));
+        if (data.flex) setFlex(data.flex);
+      } catch (err) {
+        console.error("Failed to fetch product:", err);
+      }
+    };
+    fetchProduct();
+  }, [id]);
+
   if (!product) return <p>Product not found.</p>;
 
-  const images = [
-    product.image,
-    product.image,
-    product.image,
-    product.image,
-    product.image,
-  ];
+  const images =
+    product.images?.length > 0
+      ? product.images.map((img) => img.url)
+      : [product.image];
 
   return (
     <>
@@ -47,7 +59,7 @@ function ProductDetail() {
               </button>
               <img
                 src={images[selectedImage]}
-                alt={product.title}
+                alt={product.name}
                 className="detail-main-img"
               />
               <button
@@ -77,12 +89,14 @@ function ProductDetail() {
 
           <section className="detail-right">
             <div className="detail-title-row">
-              <h3 className="detail-title">{product.title}</h3>
+              <h3 className="detail-title">{product.name}</h3>
               <span className="detail-reviews">2 reviews</span>
             </div>
             <hr />
 
-            <p className="detail-price">฿ {product.price.toLocaleString()}</p>
+            <p className="detail-price">
+              ฿ {Number(product.price).toLocaleString()}
+            </p>
 
             <section className="detail-options">
               <div className="option">
@@ -95,10 +109,7 @@ function ProductDetail() {
               <div className="option">
                 <label>Loft</label>
                 <select value={loft} onChange={(e) => setLoft(e.target.value)}>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="10.5">10.5</option>
-                  <option value="12">12</option>
+                  <option value={product.loft}>{product.loft}</option>
                 </select>
               </div>
               <div className="option">
@@ -129,11 +140,11 @@ function ProductDetail() {
                 <tbody>
                   <tr>
                     <td>Product ID :</td>
-                    <td>{product.id}</td>
+                    <td>{product.code}</td>
                   </tr>
                   <tr>
                     <td>Category :</td>
-                    <td>{product.category}</td>
+                    <td>{product.category_name}</td>
                   </tr>
                   <tr>
                     <td>Brand :</td>
@@ -141,7 +152,7 @@ function ProductDetail() {
                   </tr>
                   <tr>
                     <td>In Stock :</td>
-                    <td>12 Left</td>
+                    <td>{product.quantity} Left</td>
                   </tr>
                 </tbody>
               </table>

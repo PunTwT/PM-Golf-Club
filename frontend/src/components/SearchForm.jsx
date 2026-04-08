@@ -7,25 +7,6 @@ function SearchForm({ onSearch, onReset }) {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
-  // const handleSearch = async ({
-  //   name,
-  //   brand,
-  //   category,
-  //   minPrice,
-  //   maxPrice,
-  // }) => {
-  //   const params = new URLSearchParams();
-
-  //   if (name) params.append("name", name);
-  //   if (brand !== "All") params.append("brand", brand);
-  //   if (category !== "All") params.append("category", category);
-  //   if (minPrice) params.append("minPrice", minPrice);
-  //   if (maxPrice) params.append("maxPrice", maxPrice);
-
-  //   const res = await fetch(`/api/products?${params.toString()}`);
-  //   const data = await res.json();
-  // };
-
   const handleSearch = () => {
     onSearch({ name, brand, category, minPrice, maxPrice });
   };
@@ -96,7 +77,7 @@ function SearchForm({ onSearch, onReset }) {
             <option value="All">All</option>
             <option value="Driver">Driver</option>
             <option value="Fairway Wood">Fairway Wood</option>
-            <option value="Iron Set">Iron Set</option>
+            <option value="Iron">Iron</option>
             <option value="Wedge">Wedge</option>
             <option value="Putter">Putter</option>
           </select>
