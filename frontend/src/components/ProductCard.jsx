@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useState } from "react";
 
-function ProductCard({ image, title, text, id }) {
+function ProductCard({ image, title, text, id, onDelete }) {
   const { isAdmin } = useAuth();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleConfirmDelete = () => {
+    onDelete(id);
+    setShowModal(false);
+  };
 
   return (
     <div className="col">
@@ -13,15 +20,13 @@ function ProductCard({ image, title, text, id }) {
           <div className="position-absolute top-0 end-0 p-3 d-flex opacity-50">
             {isAdmin && (
               <div className="d-flex gap-2">
-                <Link
-                  to={`/product/${id}/edit`}
-                  className="btn p-1"
-                >
+                <Link to={`/product/${id}/edit`} className="btn p-1">
                   <i class="fa-solid fa-edit"></i>
                 </Link>
-                <Link to={``} className="btn p-1">
-                <i class="fa-solid fa-trash-can"></i>
-                </Link>
+
+                <button className="btn p-1" onClick={() => setShowModal(true)}>
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
               </div>
             )}
           </div>
@@ -36,6 +41,37 @@ function ProductCard({ image, title, text, id }) {
           </Link>
         </div>
       </div>
+
+      {showModal && (
+        <div
+          className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+          style={{ background: "rgba(0,0,0,0.5)", zIndex: 1050 }}
+          onClick={() => setShowModal(false)} // click outside = cancel
+        >
+          <div
+            className="bg-white rounded-3 p-4"
+            style={{ width: "320px" }}
+            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+          >
+            <h5 className="mb-2">Delete Product?</h5>
+            <p className="text-muted mb-4" style={{ fontSize: "14px" }}>
+              Are you sure you want to delete <strong>{title}</strong>? This
+              cannot be undone.
+            </p>
+            <div className="d-flex gap-2 justify-content-end">
+              <button
+                className="btn btn-secondary"
+                onClick={() => setShowModal(false)}
+              >
+                Cancel
+              </button>
+              <button className="btn btn-danger" onClick={handleConfirmDelete}>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
