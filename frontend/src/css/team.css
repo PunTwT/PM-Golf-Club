@@ -1,4 +1,4 @@
-  .team-title {
+.team-title {
     font-size: 2.5rem;
     color: #1a1a2e;
     position: relative;
@@ -56,3 +56,23 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
+  .ig-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 6px 14px;
+  background: #49a749;
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.ig-btn:hover {
+  background: #62c962;
+  transform: scale(1.05);
+  color: white;
+}

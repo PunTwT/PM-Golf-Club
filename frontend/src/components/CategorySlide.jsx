@@ -7,7 +7,7 @@ import FairyWood from "../assets/FairyWood.jpg";
 import IronSet from "../assets/IronSet.jpg";
 
 const images = [Driver, Putter, Wedge, FairyWood, IronSet];
-const category = ["Driver", "Putter", "Wedge", "Fairy Wood", "Iron Set"];
+const category = ["Driver", "Putter", "Wedge", "Fairway Wood", "Iron Set"];
 
 function CategorySlide() {
   const [index, setIndex] = useState(0);
