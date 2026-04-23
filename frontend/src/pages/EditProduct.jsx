@@ -1,3 +1,6 @@
+// pages/EditProduct.jsx
+// Page for editing an existing product — loads product data then wraps ProductForm
+
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getProductByID, editProduct } from "../services/productService";
@@ -9,6 +12,7 @@ function EditProduct() {
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
 
+  // Fetch the existing product data by ID when the page loads
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -22,6 +26,7 @@ function EditProduct() {
     fetchProduct();
   }, [id]);
 
+  // Submit updated product data to the API then go back
   const handleSave = async (data) => {
     try {
       await editProduct(id, data);

@@ -1,3 +1,7 @@
+// components/Products.jsx
+// Fetches and displays a grid of product cards
+// Supports an optional limit to show only a subset of products
+
 import ProductCard from "./ProductCard";
 import "../css/Products.css";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +14,7 @@ function Products({ limit }) {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
+  // Fetch all products from the API
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -22,6 +27,7 @@ function Products({ limit }) {
     fetchProducts();
   }, []);
 
+  // Delete a product and remove it from the local state
   const handleDelete = async (id) => {
     try {
       await deleteProduct(id);
@@ -38,6 +44,7 @@ function Products({ limit }) {
       <div className="d-flex justify-content-between align-items-center">
         <h3 className="product-heading">Products</h3>
 
+        {/* Add product button — only visible to admin */}
         {isAdmin && (
           <button
             className="btn me-3"
@@ -53,6 +60,7 @@ function Products({ limit }) {
         )}
       </div>
 
+      {/* Product grid */}
       <div className="container">
         <section className="row row-cols-3 g-4">
           {displayProducts.map((p) => (

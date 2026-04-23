@@ -1,12 +1,17 @@
+// components/NavBar.jsx
+// Top navigation bar with links to page sections and admin controls
+
 import { Link, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { useAuth } from "../context/AuthContext";
 import "../css/NavBar.css";
 
 function NavBar() {
+  // Get admin status and logout function from auth context
   const { isAdmin, logout } = useAuth();
   const { navigate } = useNavigate();
 
+  // Log out the admin and redirect to home
   const handleLogout = () => {
     logout();
     navigate("/");
@@ -20,6 +25,7 @@ function NavBar() {
             PM Golf Club
           </Link>
 
+          {/* Main navigation links using HashLink for smooth scroll to sections */}
           <ul className="navbar-nav w-50 d-flex text-center">
             <li className="nav-item flex-fill">
               <HashLink className="nav-link" to="/#home">
@@ -53,6 +59,7 @@ function NavBar() {
             </li>
           </ul>
 
+          {/* Right side icons: search, cart, and login/logout */}
           <div className="pe-5">
             <ul className="navbar-nav w-50 d-flex text-right">
               <li className="nav-item flex-fill">
@@ -65,6 +72,7 @@ function NavBar() {
                   <i class="fa-solid fa-cart-shopping"></i>
                 </Link>
               </li>
+              {/* Show logout button if admin is logged in, otherwise show login link */}
               <li className="nav-item flex-fill">
                 {isAdmin ? (
                   <button
