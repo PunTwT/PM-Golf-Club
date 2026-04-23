@@ -1,12 +1,19 @@
+/* ── Global Font Size Override ────────────────────── */
+
+/* Sets a consistent base font size across all elements */
 * {
   font-size: 18px;
 }
 
+/* ── NavBar Styles ────────────────────────────────── */
+
+/* Brand/logo text styled */
 .navbar-brand {
   color: #dabb6f;
   font-size: 24px;
 }
 
+/* Dark green background for the main navigation bar */
 .custom-navbar {
   background-color: #113e14;
 }

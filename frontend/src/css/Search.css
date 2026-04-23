@@ -1,12 +1,18 @@
+/* ── Number Input Spinner Reset ───────────────────── */
+
+/* Remove browser-default up/down arrows from number inputs (Chrome/Safari) */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
+/* Remove spinner for Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* ── Page Container ───────────────────────────────── */
 
 .search-container {
   padding: 2.5rem 10rem;
@@ -19,6 +25,9 @@ input[type="number"] {
   margin-bottom: 1.5rem;
 }
 
+/* ── Filter Box ───────────────────────────────────── */
+
+/* White card that wraps all filter fields and action buttons */
 .search-box {
   background: #fff;
   border-radius: 12px;
@@ -27,6 +36,7 @@ input[type="number"] {
   margin-bottom: 2rem;
 }
 
+/* Wraps all filter fields in a responsive flex row */
 .search-fields {
   display: flex;
   gap: 1.5rem;
@@ -34,6 +44,7 @@ input[type="number"] {
   margin-bottom: 1rem;
 }
 
+/* Individual filter field */
 .search-field {
   display: flex;
   flex-direction: column;
@@ -56,6 +67,7 @@ input[type="number"] {
   outline: none;
 }
 
+/* Search input with icon */
 .search-input-wrap {
   display: flex;
   align-items: center;
@@ -75,6 +87,9 @@ input[type="number"] {
   margin-right: 4px;
 }
 
+/* ── Price Range ──────────────────────────────────── */
+
+/* Min and max price inputs displayed side by side */
 .price-range {
   display: flex;
   align-items: center;
@@ -85,11 +100,14 @@ input[type="number"] {
   width: 80px;
 }
 
+/* ── Action Buttons ───────────────────────────────── */
+
 .search-buttons {
   display: flex;
   gap: 0.75rem;
 }
 
+/* Primary search button in brand green */
 .btn-search {
   background-color: #113e14;
   color: #fff;
@@ -105,6 +123,7 @@ input[type="number"] {
   background-color: #1a5c20;
 }
 
+/* Secondary reset button with a neutral outline style */
 .btn-reset {
   background-color: #fff;
   color: #333;
@@ -120,10 +139,13 @@ input[type="number"] {
   background-color: #f0f0f0;
 }
 
+/* ── Results Area ─────────────────────────────────── */
+
 .search-results {
   margin-top: 1rem;
 }
 
+/* Shown when no products match the current filters */
 .no-results {
   text-align: center;
   color: #888;

@@ -1,9 +1,14 @@
+/* ── Page Background ──────────────────────────────── */
+
 .pf-bg {
   background-color: #f6f7f4;
   min-height: 100vh;
   padding: 2.5rem 10rem;
 }
 
+/* ── Form Card ────────────────────────────────────── */
+
+/* White card that wraps all form fields */
 .pf-card {
   background: #fff;
   border-radius: 16px;
@@ -19,6 +24,9 @@
   margin-bottom: 1.5rem;
 }
 
+/* ── Image Upload Box ─────────────────────────────── */
+
+/* Dashed box used as a clickable image upload area */
 .pf-img-box {
   width: 180px;
   height: 160px;
@@ -31,21 +39,26 @@
   overflow: hidden;
 }
 
+/* Highlight the upload area when hovered */
 .pf-img-box:hover {
   border-color: #113e14;
 }
 
+/* Preview of the selected image fills the upload box */
 .pf-img-preview {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+/* Placeholder icon shown before an image is selected */
 .pf-img-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+/* ── Save Button ──────────────────────────────────── */
 
 .pf-save {
   background-color: #113e14;

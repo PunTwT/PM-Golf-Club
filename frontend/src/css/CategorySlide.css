@@ -1,3 +1,5 @@
+/* ── Slider Container ─────────────────────────────── */
+
 .slider-container {
   text-align: center;
   padding: 2rem 1rem 2rem;
@@ -6,7 +8,6 @@
 
 .slider-heading {
   font-weight: 700;
-  margin-bottom: 1.5rem;
   letter-spacing: 0.1em;
   position: relative;
   display: flex;
@@ -18,6 +19,7 @@
   text-align: center;
 }
 
+/* Decorative lines generated */
 .slider-heading::before,
 .slider-heading::after {
   content: "";
@@ -26,6 +28,8 @@
   height: 1px;
   background: #bbb;
 }
+
+/* ── Slide Images ─────────────────────────────────── */
 
 .slider {
   display: flex;
@@ -41,6 +45,7 @@
   transition: all 0.3s ease;
 }
 
+/* Side images are smaller and faded to emphasise the centre slide */
 .slider-img.side {
   width: 300px;
   height: 260px;
@@ -56,6 +61,8 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
+/* ── Category Footer (title + nav arrows) ─────────── */
+
 .category-footer {
   display: flex;
   align-items: center;
@@ -66,9 +73,10 @@
 .category-title {
   font-weight: 700;
   margin: 0;
-  min-width: 120px;
+  min-width: 120px; /* Prevents layout shift when the title text changes */
 }
 
+/* Circular prev/next navigation buttons */
 .arrow-btn {
   background: transparent;
   border: 2px solid #333;
