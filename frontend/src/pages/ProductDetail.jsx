@@ -178,6 +178,18 @@ function ProductDetail() {
             </section>
           </section>
         </section>
+        <section id="source-ref" className="detail-source-ref">
+          <p>
+            Product information and images sourced from{" "}
+            <a
+              href="https://www.pmgolfclub.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              pmgolfclub.com
+            </a>
+          </p>
+        </section>
       </main>
 
       <footer id="contact">
