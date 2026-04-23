@@ -1,3 +1,6 @@
+// controllers/product.controller.js
+// Handles HTTP requests and responses for product-related operations
+
 const {
   getProducts: fetchProducts,
   getProductByID: fetchProductByID,
@@ -9,6 +12,8 @@ const {
   editProduct,
 } = require("../models/product.model");
 
+// GET /api/products
+// Returns all products, supports optional query filters
 const getProducts = async (req, res) => {
   try {
     const { name, brand, category, minPrice, maxPrice } = req.query;
@@ -26,6 +31,8 @@ const getProducts = async (req, res) => {
   }
 };
 
+// GET /api/products/:id
+// Returns a single product by ID including its images
 const getProductByID = async (req, res) => {
   const { id } = req.params;
   try {
@@ -80,6 +87,7 @@ const getProductByID = async (req, res) => {
 //   ]
 // }
 
+// Adds a new product and its images to the database
 const addProduct = async (req, res) => {
   try {
     const { images, ...productData } = req.body;
@@ -95,6 +103,7 @@ const addProduct = async (req, res) => {
   }
 };
 
+// Deletes a product and its images by ID
 const removeProduct = async (req, res) => {
   try {
     const result = await deleteProduct(req.params.id);
@@ -107,6 +116,7 @@ const removeProduct = async (req, res) => {
   }
 };
 
+// Partially updates a product's fields and/or images
 const patchProduct = async (req, res) => {
   try {
     const { images, category_name, ...fields } = req.body;
