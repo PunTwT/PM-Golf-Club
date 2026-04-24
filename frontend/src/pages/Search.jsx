@@ -1,3 +1,6 @@
+// pages/Search.jsx
+// Search page — lets users filter products and displays matching results
+
 import { useState } from "react";
 import { getProducts, deleteProduct } from "../services/productService";
 import ProductCard from "../components/ProductCard";
@@ -10,6 +13,7 @@ function Search() {
   const [results, setResults] = useState([]);
   const [searched, setSearched] = useState(false);
 
+  // Fetch products from API with applied filters
   const handleSearch = async ({
     name,
     brand,
@@ -32,11 +36,13 @@ function Search() {
     }
   };
 
+  // Clear results and reset searched state
   const handleReset = () => {
     setResults([]);
     setSearched(false);
   };
 
+  // Delete a product and remove it from search results
   const handleDelete = async (id) => {
     try {
       await deleteProduct(id);
@@ -51,8 +57,10 @@ function Search() {
       <main className="search-container">
         <h3 className="search-title">Search Products</h3>
 
+        {/* Filter form */}
         <SearchForm onSearch={handleSearch} onReset={handleReset} />
 
+        {/* Results section — only shown after a search is performed */}
         {searched && (
           <section className="search-results" aria-label="Search Results">
             {results.length === 0 ? (

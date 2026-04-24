@@ -1,7 +1,11 @@
+// components/AboutFAQ.jsx
+// Displays the About Us section and an interactive FAQ accordion
+
 import {Link} from "react-router-dom";
 import { useState } from "react";
 import "../css/AboutFAQ.css";
 
+// Static FAQ data
 const faqs = [
   { id: 1, question: "How can I track my order?",      answer: "You can track your order via the tracking link sent to your email." },
   { id: 2, question: "What is the return policy?",     answer: "We accept returns within 30 days of purchase." },
@@ -10,14 +14,18 @@ const faqs = [
 ];
 
 function AboutFAQ() {
-  const [openId, setOpenId] = useState(null);  // tracks which FAQ is open
+  // Tracks which FAQ item is currently expanded (null = all closed)
+  const [openId, setOpenId] = useState(null); 
 
+  // Toggle open/close for a FAQ item
   const toggle = (id) => {
     setOpenId((prev) => (prev === id ? null : id));  // close if already open
   };
 
   return (
     <section className="aboutfaq-section">
+
+      {/* About Us section */}
       <section className="aboutus-container">
             <h3 className="aboutus-heading">About Us</h3>
             <p className="aboutus-text">
@@ -34,12 +42,14 @@ function AboutFAQ() {
 
       <div className="aboutfaq-divider" />
 
+      {/* FAQ accordion section */}
       <div className="faqs-container">
       <h3 className="faqs-heading">FAQs</h3>
       <ul className="faqs-list">
         {faqs.map((faq) => (
           <li key={faq.id} className="faqs-item">
 
+            {/* Question button — toggles answer visibility */}
             <button className="faqs-question" onClick={() => toggle(faq.id)}>
               <span>{faq.question}</span>
               <span className={`faqs-arrow ${openId === faq.id ? "open" : ""}`}>
@@ -47,6 +57,7 @@ function AboutFAQ() {
               </span>
             </button>
 
+            {/* Answer — only shown when this FAQ is open */}
             {openId === faq.id && (
               <p className="faqs-answer">{faq.answer}</p>
             )}

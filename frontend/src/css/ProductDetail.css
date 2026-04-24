@@ -1,8 +1,13 @@
+/* ── Page Container ───────────────────────────────── */
+
+/* Wide horizontal padding keeps content centred on large screens */
 .detail-container {
   padding: 2rem 16rem;
-  background-color: #F6F7F4;
+  background-color: #f6f7f4;
   min-height: 100vh;
 }
+
+/* ── Back Button ──────────────────────────────────── */
 
 .detail-back {
   background: none;
@@ -16,8 +21,13 @@
   gap: 6px;
 }
 
-.detail-back:hover { color: #113E14; }
+.detail-back:hover {
+  color: #113e14;
+}
 
+/* ── Product Card ─────────────────────────────────── */
+
+/* White card housing both the image gallery and product info side by side */
 .detail-card {
   background: #fff;
   border-radius: 16px;
@@ -27,7 +37,8 @@
   gap: 3rem;
 }
 
-/* Left side */
+/* ── Left Side: Image Gallery ─────────────────────── */
+
 .detail-left {
   display: flex;
   flex-direction: column;
@@ -36,6 +47,7 @@
   min-width: 280px;
 }
 
+/* Wrapper that places prev/next arrows on either side of the main image */
 .detail-main-img-wrap {
   display: flex;
   align-items: center;
@@ -49,6 +61,7 @@
   border-radius: 12px;
 }
 
+/* Prev/next image navigation arrows */
 .detail-arrow {
   background: none;
   border: none;
@@ -58,10 +71,11 @@
   padding: 0 4px;
 }
 
-.detail-arrow:hover { 
-    color: #113E14; 
+.detail-arrow:hover {
+  color: #113e14;
 }
 
+/* Thumbnail strip below the main image */
 .thumbnails {
   display: flex;
   gap: 8px;
@@ -76,12 +90,13 @@
   cursor: pointer;
 }
 
+/* Highlight the thumbnail matching the currently displayed image */
 .detail-thumb.active {
-  border-color: #113E14;
+  border-color: #113e14;
 }
 
+/* ── Right Side: Product Info ─────────────────────── */
 
-/* Right side */
 .detail-right {
   flex: 1;
   display: flex;
@@ -89,6 +104,7 @@
   gap: 1rem;
 }
 
+/* Row that places the product name and review count on the same line */
 .detail-title-row {
   display: flex;
   justify-content: space-between;
@@ -107,12 +123,15 @@
   white-space: nowrap;
 }
 
+/* Price displayed */
 .detail-price {
   font-size: 24px;
   font-weight: 700;
-  color: #113E14;
+  color: #113e14;
   margin: 0;
 }
+
+/* ── Spec Dropdowns (Hand / Loft / Flex) ──────────── */
 
 .detail-options {
   display: flex;
@@ -132,6 +151,8 @@
   border: 1px solid #ccc;
   font-size: 16px;
 }
+
+/* ── Quantity Selector & Add to Cart ──────────────── */
 
 .detail-actions {
   display: flex;
@@ -157,8 +178,9 @@
   line-height: 1;
 }
 
+/* "Add to Cart" button */
 .detail-add {
-  background-color: #113E14;
+  background-color: #113e14;
   color: #fff;
   border: none;
   padding: 0.6rem 2rem;
@@ -168,7 +190,11 @@
   transition: background 0.2s;
 }
 
-.detail-add:hover { background-color: #1a5c20; }
+.detail-add:hover {
+  background-color: #1a5c20;
+}
+
+/* ── Description & Spec Table ─────────────────────── */
 
 .detail-description {
   border-top: 1px solid #eee;
@@ -189,7 +215,21 @@
   padding: 6px 0;
 }
 
+/* Left column (labels) has a fixed width to keep values aligned */
 .detail-desc-table td:first-child {
   color: #010000;
   width: 120px;
+}
+
+/* ── Images Reference ─────────────────────── */
+#source-ref {
+  text-align: right;
+  padding: 0.5rem 1.5rem;
+  font-size: 12px;
+  color: #888;
+}
+
+#source-ref a {
+  color: inherit;
+  text-decoration: underline;
 }

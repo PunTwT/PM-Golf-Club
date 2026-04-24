@@ -1,12 +1,14 @@
+/* ── Product Listing Container ────────────────────── */
+
 .product-container {
   padding: 2.5rem 2rem 3rem;
   width: 100%;
-  background-color: #F6F7F4;
+  background-color: #f6f7f4;
 }
 
+/* Section heading with decorative horizontal lines on each side */
 .product-heading {
   font-weight: 700;
-  margin-bottom: 1.5rem;
   letter-spacing: 0.1em;
   position: relative;
   display: flex;
@@ -18,6 +20,7 @@
   text-align: center;
 }
 
+/* Decorative lines generated via pseudo-elements */
 .product-heading::before,
 .product-heading::after {
   content: "";
@@ -27,10 +30,15 @@
   background: #bbb;
 }
 
+/* ── Bootstrap Grid Overrides ─────────────────────── */
+
+/* Custom gutter spacing between product cards */
 .row {
-  --bs-gutter-x: 2rem;  
-  --bs-gutter-y: 1.8rem;  
+  --bs-gutter-x: 2rem;
+  --bs-gutter-y: 1.8rem;
 }
+
+/* ── Product Card ─────────────────────────────────── */
 
 .card {
   border-radius: 16px !important;
@@ -50,10 +58,11 @@
   margin-bottom: 1rem;
 }
 
+/* Price pushed to the bottom-right of the card body */
 .card-text {
   font-weight: 700;
-  color: #113E14;
+  color: #113e14;
   margin-top: auto;
-  text-align: right;  
+  text-align: right;
   font-size: 20px;
 }

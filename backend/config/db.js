@@ -1,8 +1,12 @@
+// config/db.js
+// Creates and exports a MySQL connection pool using credentials from .env
+
 const dotenv = require("dotenv");
 const mysql = require("mysql2");
 
 dotenv.config();
 
+// Create a promise-based connection pool for async/await support
 const db = mysql
   .createPool({
     host: process.env.DB_HOST,

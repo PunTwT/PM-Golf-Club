@@ -1,3 +1,6 @@
+/* ── Login Page Background ────────────────────────── */
+
+/* Full-screen centred layout with a light beige background */
 .login-bg {
   min-height: 100vh;
   background-color: #f0efe9;
@@ -6,6 +9,9 @@
   justify-content: center;
 }
 
+/* ── Login Card ───────────────────────────────────── */
+
+/* Floating white card that contains the login form */
 .login-card {
   background: #fff;
   border-radius: 24px;
@@ -16,6 +22,7 @@
   position: relative;
 }
 
+/* Dismiss button positioned in the top-right corner of the card */
 .login-close {
   position: absolute;
   top: 1rem;
@@ -37,6 +44,8 @@
 .login-close:hover {
   background: #f0f0f0;
 }
+
+/* ── Branding & Headings ──────────────────────────── */
 
 .login-icon {
   font-size: 36px;
@@ -63,12 +72,15 @@
   margin-bottom: 1.5rem;
 }
 
+/* ── Form Inputs ──────────────────────────────────── */
+
 .login-form {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
+/* Borderless input fields */
 .login-input {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -84,9 +96,12 @@
   color: #aaa;
 }
 
+/* Slightly darker background on focus to indicate active state */
 .login-input:focus {
   background: #e8e7e1;
 }
+
+/* ── Helper Links ─────────────────────────────────── */
 
 .login-links {
   display: flex;
@@ -101,6 +116,8 @@
 .login-links span:hover {
   color: #113e14;
 }
+
+/* ── Submit Button ────────────────────────────────── */
 
 .login-btn {
   width: 100%;
@@ -120,10 +137,13 @@
   background-color: #1a5c20;
 }
 
+/* ── Validation ───────────────────────────────────── */
+
 .error-message {
   color: red;
 }
 
+/* Lock icon */
 .fa-lock {
   font-size: 48px;
   color: #dabb6f;

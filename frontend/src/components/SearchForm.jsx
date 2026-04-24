@@ -1,16 +1,22 @@
+// components/SearchForm.jsx
+// Filter form for searching products by name, brand, category, and price range
+
 import { useState } from "react";
 
 function SearchForm({ onSearch, onReset }) {
+  // Filter field states
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("All");
   const [category, setCategory] = useState("All");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
 
+  // Pass current filter values to the parent search handler
   const handleSearch = () => {
     onSearch({ name, brand, category, minPrice, maxPrice });
   };
 
+  // Reset all filters to defaults and notify parent
   const handleReset = () => {
     setName("");
     setBrand("All");
@@ -28,6 +34,8 @@ function SearchForm({ onSearch, onReset }) {
         handleSearch();
       }}
     >
+
+      {/* Product name search input */}
       <fieldset className="search-fields">
         <legend className="visually-hidden">Filter Options</legend>
 
@@ -47,6 +55,7 @@ function SearchForm({ onSearch, onReset }) {
           </div>
         </div>
 
+        {/* Brand filter dropdown */}
         <div className="search-field">
           <label htmlFor="brand">Brand</label>
           <select
@@ -67,6 +76,7 @@ function SearchForm({ onSearch, onReset }) {
           </select>
         </div>
 
+        {/* Category filter dropdown */}
         <div className="search-field">
           <label htmlFor="category">Category</label>
           <select
@@ -83,6 +93,7 @@ function SearchForm({ onSearch, onReset }) {
           </select>
         </div>
 
+        {/* Min and max price range inputs */}
         <div className="search-field">
           <label>Price Range</label>
           <div className="price-range">
@@ -105,6 +116,7 @@ function SearchForm({ onSearch, onReset }) {
         </div>
       </fieldset>
 
+      {/* Search and Reset buttons */}
       <div className="search-buttons">
         <button type="submit" className="btn-search">
           <i class="fa-solid fa-magnifying-glass"></i> Search

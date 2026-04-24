@@ -1,7 +1,12 @@
+// components/ProductForm.jsx
+// Reusable form component for both adding and editing products
+
 import { useState } from "react";
 import "../css/ProductForm.css";
 
 function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
+
+  // Form field states — pre-filled with existing data when editing
   const [name, setName] = useState(initialData.name || "");
   const [description, setDescription] = useState(initialData.description || "");
   const [productId, setProductId] = useState(initialData.code || "");
@@ -11,11 +16,14 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
   const [category, setCategory] = useState(initialData.category_name || "");
   const [stock, setStock] = useState(initialData.quantity || "");
   const [price, setPrice] = useState(initialData.price || "");
+
+  // Image URLs list — extracted from existing image objects when editing
   const [images, setImages] = useState(
     initialData.images?.map((img) => img.url) || [],
   );
   const [newUrl, setNewUrl] = useState("");
 
+  // Add a new image URL to the list
   const handleAddUrl = () => {
     if (newUrl.trim()) {
       setImages((prev) => [...prev, newUrl.trim()]);
@@ -27,6 +35,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
     setImages((prev) => prev.filter((_, i) => i !== index));
   };
 
+  // Maps category name to its database ID
   const categoryMap = {
     Driver: 1,
     "Fairway Wood": 2,
@@ -35,6 +44,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
     Putter: 5,
   };
 
+  // Collect and format all form data then pass to parent handler
   const handleSave = (e) => {
     e.preventDefault();
     onSave({
@@ -58,6 +68,8 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
       </h4>
 
       <form className="pf-card" onSubmit={handleSave}>
+
+        {/* Product name input */}
         <div className="mb-3">
           <label htmlFor="pf-name" className="form-label fw-semibold">
             Product Name
@@ -72,6 +84,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
           />
         </div>
 
+        {/* Product description textarea */}
         <div className="mb-3">
           <label htmlFor="pf-desc" className="form-label fw-semibold">
             Description
@@ -86,6 +99,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
           />
         </div>
 
+        {/* Product ID and Brand */}
         <div className="row mb-3">
           <div className="col">
             <label htmlFor="pf-pid" className="form-label fw-semibold">
@@ -115,6 +129,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
           </div>
         </div>
 
+        {/* Loft and Hand */}
         <div className="row mb-3">
           <div className="col">
             <label htmlFor="pf-loft" className="form-label fw-semibold">
@@ -149,6 +164,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
           </div>
         </div>
 
+        {/* Category and Stock Status */}
         <div className="row mb-3">
           <div className="col">
             <label htmlFor="pf-category" className="form-label fw-semibold">
@@ -173,6 +189,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
             </select>
           </div>
 
+          {/* Status is auto-derived from stock quantity */}
           <div className="col">
             <label className="form-label fw-semibold">Status</label>
             <div className="form-control" style={{ background: "#f8f9fa" }}>
@@ -189,6 +206,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
           </div>
         </div>
 
+        {/* Stock quantity and Price */}
         <div className="row mb-3">
           <div className="col">
             <label htmlFor="pf-stock" className="form-label fw-semibold">
@@ -219,10 +237,12 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
             </div>
           </div>
         </div>
-
+        
+        {/* Image URL input and preview */}
         <div className="mb-4">
           <label className="form-label fw-semibold">Add Images</label>
 
+          {/* URL input with Add button */}
           <div className="d-flex gap-2 mb-3">
             <input
               type="text"
@@ -240,6 +260,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
             </button>
           </div>
 
+          {/* Image preview grid with remove buttons */}
           <div className="d-flex flex-wrap gap-2">
             {images.map((url, i) => (
               <div key={i} className="position-relative">
@@ -270,6 +291,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
               </div>
             ))}
 
+            {/* Placeholder shown when no images are added */}
             {images.length === 0 && (
               <div className="pf-img-box">
                 <div className="pf-img-placeholder">
@@ -291,6 +313,7 @@ function ProductForm({ isEdit = false, initialData = {}, onSave, onCancel }) {
           </div>
         </div>
 
+        {/* Form action buttons */}
         <div className="d-flex gap-3 align-items-center">
           <button type="submit" className="btn pf-save">
             {isEdit ? "Save Change" : "Save Product"}

@@ -41,7 +41,7 @@ create table product(
 create table product_image(
 	id int auto_increment primary key,
     url varchar(255) not null,
-    name varchar(50),
+    name varchar(100),
     product_id int not null,
     foreign key (product_id) references product(id)
 );

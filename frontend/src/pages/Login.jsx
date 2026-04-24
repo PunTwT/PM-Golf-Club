@@ -1,15 +1,20 @@
+// pages/Login.jsx
+// Admin login page with username and password form
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../css/Login.css";
 
 function Login() {
+  // Form field states
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  // Submit login credentials and redirect on success
   const handleLogin = async (e) => {
     e.preventDefault();
     const success = await login(username, password);
@@ -23,6 +28,8 @@ function Login() {
   return (
     <main className="login-bg">
       <section className="login-card">
+
+        {/* Close button to go back to previous page */}
         <button className="login-close" onClick={() => navigate(-1)}>
           ✕
         </button>
@@ -51,6 +58,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
+          {/* Show error message if login fails */}
           {error && <p className="error-message">{error}</p>}
 
           <div className="login-links">
