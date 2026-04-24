@@ -98,7 +98,7 @@ URL: http://localhost:5000/api/products
 body: raw JSON
 {
   "name": "TaylorMade SLDR Fairway Wood 5",
-  "description": "The TaylorMade SLDR 5-wood is built around a low, forward center of gravity design that promotes a lower spin rate and more penetrating ball flight — ideal for players seeking extra distance off the fairway. Features a loft sleeve system that allows loft adjustment for personalized trajectory control. The club has a minor cosmetic dent on the head (visible in photos, marked in red circle) which does not affect performance in any way. Paired with a Senior Regular (SR) flex shaft, making it well-suited for mid-swing-speed players. Condition: 85% — shows normal wear with the noted cosmetic blemish.",
+  "description": "TaylorMade SLDR 5-wood, Loft 19 (adjustable), Flex SR. Low forward CG for reduced spin and penetrating ball flight. Minor cosmetic dent on head, does not affect performance. Condition: 85%.",
   "code": "FW004",
   "brand": "TaylorMade",
   "price": 1800.00,
