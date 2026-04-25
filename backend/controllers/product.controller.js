@@ -48,44 +48,89 @@ const getProductByID = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-// Testing Insert a new Product
-// method: post
-// URL: http://localhost:5000/api/products
-// body: raw JSON
-// {
-//   "name": "Honma Tour World TR20 460 Driver",
-//   "description": "Released in 2020, this 460cc driver features a Ti-Carbon Fast Frame for high ball speeds and low spin. Includes three adjustable weight ports for shot-shape customization. Equipped with a premium Vizard FD-5 graphite shaft. Condition: Excellent.",
-//   "code": "DV005",
-//   "brand": "Honma",
-//   "price": 5900.00,
-//   "hand": "RH",
-//   "loft": 10.5,
-//   "flex": "S",
-//   "quantity": 1,
-//   "category_id": 1,
-//   "images": [
-//     {
-//       "url": "https://www.pmgolfclub.com/manage/product/product_picture/1_080920252057168687.JPG",
-//       "name": "Honma Tour World TR20 460 - Main"
-//     },
-//     {
-//       "url": "https://www.pmgolfclub.com/manage/product/product_picture/gallery_080920252057067894.JPG",
-//       "name": "Honma TR20 - 2"
-//     },
-//     {
-//       "url": "https://www.pmgolfclub.com/manage/product/product_picture/gallery_080920252057087620.JPG",
-//       "name": "Honma TR20 - 3"
-//     },
-//     {
-//       "url": "https://www.pmgolfclub.com/manage/product/product_picture/gallery_080920252057083766.JPG",
-//       "name": "Honma TR20 - 4"
-//     },
-//     {
-//         "url": "https://www.pmgolfclub.com/manage/product/product_picture/m_gallery_080920252057128368.JPG",
-//         "name": "Honma TR20 - 5"
-//     }
-//   ]
-// }
+
+// ------------------- Insert Product Test Cases ------------------- //
+/*
+Testing Insert a new Product - 1st
+method: post
+URL: http://localhost:5000/api/products
+body: raw JSON
+{
+  "name": "Honma Tour World TR20 460 Driver",
+  "description": "Released in 2020, this 460cc driver features a Ti-Carbon Fast Frame for high ball speeds and low spin. Includes three adjustable weight ports for shot-shape customization. Equipped with a premium Vizard FD-5 graphite shaft. Condition: Excellent.",
+  "code": "DV004",
+  "brand": "Honma",
+  "price": 5900.00,
+  "hand": "RH",
+  "loft": 10.5,
+  "flex": "S",
+  "quantity": 1,
+  "category_id": 1,
+  "images": [
+    {
+      "url": "https://www.pmgolfclub.com/manage/product/product_picture/1_080920252057168687.JPG",
+      "name": "Honma Tour World TR20 460 - Main"
+    },
+    {
+      "url": "https://www.pmgolfclub.com/manage/product/product_picture/gallery_080920252057067894.JPG",
+      "name": "Honma TR20 - 2"
+    },
+    {
+      "url": "https://www.pmgolfclub.com/manage/product/product_picture/gallery_080920252057087620.JPG",
+      "name": "Honma TR20 - 3"
+    },
+    {
+      "url": "https://www.pmgolfclub.com/manage/product/product_picture/gallery_080920252057083766.JPG",
+      "name": "Honma TR20 - 4"
+    },
+    {
+        "url": "https://www.pmgolfclub.com/manage/product/product_picture/m_gallery_080920252057128368.JPG",
+        "name": "Honma TR20 - 5"
+    }
+  ]
+}
+*/
+
+/*
+Testing Insert a new Product - 2nd
+method: post
+URL: http://localhost:5000/api/products
+body: raw JSON
+{
+  "name": "TaylorMade SLDR Fairway Wood 5",
+  "description": "TaylorMade SLDR 5-wood, Loft 19 (adjustable), Flex SR. Low forward CG for reduced spin and penetrating ball flight. Minor cosmetic dent on head, does not affect performance. Condition: 85%.",
+  "code": "FW004",
+  "brand": "TaylorMade",
+  "price": 1800.00,
+  "hand": "RH",
+  "loft": 19.0,
+  "flex": "SR",
+  "quantity": 1,
+  "category_id": 2,
+  "images": [
+    {
+      "url": "https://www.pmgolfclub.com/manage/product/product_picture/m_2_081220252204560351.JPG",
+      "name": "TaylorMade SLDR 5 Wood - Main"
+    },
+    {
+      "url": "https://www.pmgolfclub.com/manage/product/product_picture/m_gallery_081220252204481209.JPG",
+      "name": "TaylorMade SLDR 5 Wood - 2"
+    },
+    {
+      "url": "https://www.pmgolfclub.com/manage/product/product_picture/m_gallery_081220252204491890.JPG",
+      "name": "TaylorMade SLDR 5 Wood - 3"
+    },
+    {
+      "url": "https://www.pmgolfclub.com/manage/product/product_picture/m_gallery_081220252204511618.JPG",
+      "name": "TaylorMade SLDR 5 Wood - 4"
+    },
+    {
+      "url": "https://www.pmgolfclub.com/manage/product/product_picture/m_gallery_081220252204524407.JPG",
+      "name": "TaylorMade SLDR 5 Wood - 5"
+    }
+  ]
+}
+*/
 
 // Adds a new product and its images to the database
 const addProduct = async (req, res) => {
@@ -103,6 +148,25 @@ const addProduct = async (req, res) => {
   }
 };
 
+// ------------------- Delete Product Test Cases ------------------- //
+/*
+Testing Delete a Product - 1st
+method: DELETE
+URL: http://localhost:5000/api/products/1
+*/
+
+/*
+Testing Delete a Product - 2nd
+method: DELETE
+URL: http://localhost:5000/api/products/2
+*/
+
+/*
+Testing Delete a Product - Failed Test Case
+method: DELETE
+URL: http://localhost:5000/api/products/9999
+*/
+
 // Deletes a product and its images by ID
 const removeProduct = async (req, res) => {
   try {
@@ -116,7 +180,30 @@ const removeProduct = async (req, res) => {
   }
 };
 
-// Partially updates a product's fields and/or images
+// ------------------- Update Product Test Cases ------------------- //
+/* 
+Testing Update a Product - 1st
+method: PATCH
+URL: http://localhost:5000/api/products/10
+body: raw JSON
+{
+  "price": 5500.00
+}
+*/
+
+/* 
+Testing Update a Product - 2nd
+method: PATCH
+URL: http://localhost:5000/api/products/10
+body: raw JSON
+{
+  "quantity": 2,
+  "flex": "R",
+  "loft": 10.5
+}
+*/
+
+// Update a product's fields and/or images
 const patchProduct = async (req, res) => {
   try {
     const { images, category_name, ...fields } = req.body;
@@ -129,7 +216,7 @@ const patchProduct = async (req, res) => {
     }
 
     if (images !== undefined) {
-      await updateImages(req.params.id, images)
+      await updateImages(req.params.id, images);
     }
 
     res.json({ message: "Product updated successfully" });
