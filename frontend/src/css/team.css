@@ -1,62 +1,86 @@
+/* ── Team Page Title ──────────────────────────────── */
+
 .team-title {
-    font-size: 2.5rem;
-    color: #1a1a2e;
-    position: relative;
-    display: inline-block;
-  }
-  .team-title::after {
-    content: '';
-    display: block;
-    height: 4px;
-    width: 100%;
-    background: #1a4d1a;
-    margin-top: 8px;
-    border-radius: 2px;
-  }
-  .member-card {
-    background: white;
-    border-radius: 20px;
-    padding: 30px 20px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-  }
-  .member-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 40px rgba(194,24,91,0.15);
-  }
-  .avatar-wrap {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid #1a4d1a;
-    box-shadow: 0 6px 20px rgba(194,24,91,0.25);
-    margin: 0 auto 16px;
-  }
-  .avatar-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .name-badge {
-    background: #1a4d1a;
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 6px 16px;
-    border-radius: 30px;
-    display: inline-block;
-    margin-bottom: 6px;
-  }
-  .role-text {
-    font-size: 0.78rem;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-  .ig-btn {
+  font-size: 2.5rem;
+  color: #1a1a2e;
+  position: relative;
+  display: inline-block;
+}
+
+/* Underline accent bar below the section title */
+.team-title::after {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: #1a4d1a;
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* ── Member Card ──────────────────────────────────── */
+
+/* White card for each team member */
+.member-card {
+  background: white;
+  border-radius: 20px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.member-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(194, 24, 91, 0.15);
+}
+
+/* ── Avatar ───────────────────────────────────────── */
+
+/* Circular avatar */
+.avatar-wrap {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #1a4d1a;
+  box-shadow: 0 6px 20px rgba(194, 24, 91, 0.25);
+  margin: 0 auto 16px;
+}
+
+.avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Name & Role ──────────────────────────────────── */
+
+/* Pill badge displaying the member's name */
+.name-badge {
+  background: #1a4d1a;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 30px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+/* Small uppercase label for the member's role */
+.role-text {
+  font-size: 0.78rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* IG button */
+.ig-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -68,7 +92,9 @@
   font-weight: 500;
   border-radius: 30px;
   text-decoration: none;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .ig-btn:hover {
